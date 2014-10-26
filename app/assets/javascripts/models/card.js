@@ -1,19 +1,14 @@
 var Card = Backbone.Model.extend({
-
 	defaults: {
-		"faceDown":  true,
+		"faceDown": true,
 	},
 
-	flipUp: function() {
+	flip: function() {
 		this.set('faceDown', false);
 	},
 
-	flipDown: function() {
+	turnDown: function() {
 		this.set('faceDown', true);
 	},
 
-	putOnColor: function(color) {
-		this.set('color', color);
-	}
-
-})
+});
