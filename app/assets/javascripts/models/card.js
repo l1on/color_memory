@@ -11,4 +11,8 @@ var Card = Backbone.Model.extend({
 		this.set('faceDown', true);
 	},
 
+	isFlipped: function() {
+		return this.get('faceDown') == false;
+	}
+
 });

@@ -9,7 +9,7 @@ var GameBoard = Backbone.Model.extend({
 			var color = colors[_.random(colors.length - 1)];
 
 			if (self.get('cards').containsCardWithColor(color)) {
-				colors = _.without(colors, color);
+				colors = _(colors).without(color);
 			}	
 
 			self.get('cards').add(new Card({color: color})); 

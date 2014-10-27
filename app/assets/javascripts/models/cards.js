@@ -10,6 +10,14 @@ var Cards = Backbone.Collection.extend({
 
     areFilppedCardsSameColor: function() {
     	var self = this;
-    	return self.where({faceDown: false}).every(function(card) {return card.get('color') == self.at(0).get('color'); }); 
+    	return self.where({faceDown: false}).every(function(card) { return card.get('color') == self.at(0).get('color'); }); 
+    },
+
+    removeFlippedCards: function() {
+        this.reset(this.reject(function(card) { return card.isFlipped(); }));
+    },
+
+    turnDownFlippedCards: function() {
+        this.where({faceDown: false}).each(function(card) { card.turnDown(); });
     }
 });

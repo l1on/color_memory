@@ -29,11 +29,11 @@ describe("Cards", function() {
 
 	describe('#areFilppedCardsSameColor', function() {
         var card = new Card({color: 'color1'}); 
-
+        
         describe('when one card is flipped up', function() {
             beforeEach(function() {
-            	card.flip();
-                cards.add(card);
+            	card.flip();   
+                cards.add(card);         
             });
 
             describe('when another card of the same color is flipped up', function() {
@@ -56,6 +56,20 @@ describe("Cards", function() {
                 });
             });
         });
-
 	});
+
+    describe('#removeFlippedCards', function() {
+        var card1 = new Card();
+        var card2 = new Card();
+        
+        beforeEach(function() {
+            cards.add([new Card({faceDown: false}), card1, card2, new Card({faceDown: false})]);
+        });
+
+        it("makes the cards collection contain only the faced down cards", function() {
+            cards.removeFlippedCards();
+            expect(cards.length).toEqual(2);
+            expect(cards.contains(card1) && cards.contains(card2)).toBe(true);
+        });
+    });
 });
