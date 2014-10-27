@@ -18,6 +18,6 @@ var Cards = Backbone.Collection.extend({
     },
 
     turnDownFlippedCards: function() {
-        this.where({faceDown: false}).each(function(card) { card.turnDown(); });
+        _(this.where({faceDown: false})).each(function(card) { card.turnDown(); });
     }
 });
