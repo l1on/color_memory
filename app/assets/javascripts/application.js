@@ -15,6 +15,10 @@
 //= require turbolinks
 //= require underscore
 //= require backbone
+//= require backbone.marionette
 //= require_tree ./models
+//= require_tree ./templates
+//= require_tree ./views
+//= require games
 
 
