@@ -14,6 +14,19 @@ ColorMemory.Models.Game = Backbone.Model.extend({
 
 			self.get('cards').add(new ColorMemory.Models.Card({color: color})); 
 		});
+
+		this.get('cards').first().select();
 	},
+
+	selectNextCard: function() {
+		var indexOfSelectedCard = this.get('cards').indexOf(this._getSelectedCard());
+		
+		this.get('cards').at(indexOfSelectedCard).deselect();
+		this.get('cards').at(indexOfSelectedCard + 1).select();
+	},
+
+	_getSelectedCard: function() {
+		return this.get('cards').find(function(card) { return card.get('selected') === true; });
+	}
 
 });
