@@ -1,4 +1,4 @@
-var Card = Backbone.Model.extend({
+ColorMemory.Models.Card = Backbone.Model.extend({
 	defaults: {
 		"faceDown": true,
 	},

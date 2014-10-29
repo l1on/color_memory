@@ -1,5 +1,5 @@
-var Cards = Backbone.Collection.extend({
-    model: Card,
+ColorMemory.Models.Cards = Backbone.Collection.extend({
+    model: ColorMemory.Models.Card,
 
     containsCardWithColor: function(color) {
     	if (this.find(function(card) { return card.get('color') == color; })) {

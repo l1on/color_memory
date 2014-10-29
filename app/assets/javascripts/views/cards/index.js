@@ -1,2 +1,3 @@
-//= require views/cards/show
-//= require views/cards/list
+//= require_self
+
+ColorMemory.Views.Cards = {};

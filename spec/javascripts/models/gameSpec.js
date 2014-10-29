@@ -1,19 +1,19 @@
-describe("GameBoard", function() {
-    var gameBoard;
+describe("Game", function() {
+    var game;
 
     beforeEach(function() {
-        gameBoard = new GameBoard();
+        game = new ColorMemory.Models.Game();
     });
 
     describe(':cards', function() {
         var cards;
         
         beforeEach(function() {
-            cards = gameBoard.get('cards');
+            cards = game.get('cards');
         });
 
         it("is a collection of cards", function() {
-            expect(cards).toEqual(jasmine.any(Cards));
+            expect(cards).toEqual(jasmine.any(ColorMemory.Models.Cards));
         });
 
         it("has a length of 16", function() {

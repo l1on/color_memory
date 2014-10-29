@@ -2,7 +2,7 @@ describe("Card", function() {
     var card;
 
     beforeEach(function() {
-        card = new Card();
+        card = new ColorMemory.Models.Card();
     });
 
     it("is faced down by default", function() {

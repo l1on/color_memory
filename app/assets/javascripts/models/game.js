@@ -1,6 +1,6 @@
-var GameBoard = Backbone.Model.extend({
+ColorMemory.Models.Game = Backbone.Model.extend({
 	initialize: function() {
-		this.set('cards', new Cards());
+		this.set('cards', new ColorMemory.Models.Cards());
 
 		var colors = ['colour1', 'colour2', 'colour3', 'colour4', 'colour5', 'colour6', 'colour7', 'colour8'];
 		
@@ -12,7 +12,7 @@ var GameBoard = Backbone.Model.extend({
 				colors = _(colors).without(color);
 			}	
 
-			self.get('cards').add(new Card({color: color})); 
+			self.get('cards').add(new ColorMemory.Models.Card({color: color})); 
 		});
 	},
 

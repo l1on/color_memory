@@ -16,9 +16,22 @@
 //= require underscore
 //= require backbone
 //= require backbone.marionette
+
+//= require_self
 //= require_tree ./models
 //= require_tree ./templates
 //= require_tree ./views
-//= require games
 
+var ColorMemory = new Marionette.Application();
 
+ColorMemory.addRegions({
+	gameRegion: 'body'
+});
+
+ColorMemory.on("start", function(options){
+	var newGameView = new ColorMemory.Views.Games.New();
+	ColorMemory.gameRegion.show(newGameView);
+});
+
+ColorMemory.Models = {};
+ColorMemory.Views = {};

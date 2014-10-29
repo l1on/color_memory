@@ -2,7 +2,7 @@ describe("Cards", function() {
     var cards;
 
     beforeEach(function() {
-        cards = new Cards();
+        cards = new ColorMemory.Models.Cards();
     });
 
 	describe("#containsCardWithColor", function() {
@@ -28,7 +28,7 @@ describe("Cards", function() {
 	});
 
 	describe('#areFilppedCardsSameColor', function() {
-        var card = new Card({color: 'color1'}); 
+        var card = new ColorMemory.Models.Card({color: 'color1'}); 
         
         describe('when one card is flipped up', function() {
             beforeEach(function() {
@@ -59,11 +59,11 @@ describe("Cards", function() {
 	});
 
     describe('#removeFlippedCards', function() {
-        var card1 = new Card();
-        var card2 = new Card();
+        var card1 = new ColorMemory.Models.Card();
+        var card2 = new ColorMemory.Models.Card();
         
         beforeEach(function() {
-            cards.add([new Card({faceDown: false}), card1, card2, new Card({faceDown: false})]);
+            cards.add([new ColorMemory.Models.Card({faceDown: false}), card1, card2, new ColorMemory.Models.Card({faceDown: false})]);
         });
 
         it("makes the cards collection contain only the faced down cards", function() {
