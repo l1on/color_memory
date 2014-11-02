@@ -1,39 +1,47 @@
-ColorMemory.Views.Games.New = Marionette.CompositeView.extend({
+ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	id: 'game',
 
 	template: JST['templates/games/new'],
 
-	childView: ColorMemory.Views.Cards.Show,
-
-	childViewContainer: '#cards',
+	events: {
+		'click button': '_onClickButton'
+	},
 
 	onBeforeRender: function() {
 		this.model = new ColorMemory.Models.Game();
 		this.collection = this.model.get('cards');
 
-		this.setupKeyboardControl();
+		this.listenTo(this.collection, 'change:faceDown', this.onCardFlipping);
 	},
 
-	setupKeyboardControl: function() {
-		$(document).keydown(function(event){ 
-			switch(event.which) {
-				case 37: 
-					alert('left');
-					break;
-				case 38: 
-					alert('up');
-					break;
-				case 39: 
-					alert('right');
-					break;				
-				case 40: 
-					alert('down');
-					break;
-				case 13:
-					alert('enter');
-					break;
-			}
-		});
+	onRender: function() {
+		if (this.cardsView) this.cardsView.destroy();
+		
+		this.cardsView = new ColorMemory.Views.Cards.List({
+			collection: this.collection
+		}); 
+
+		this.$('#cards').html(this.cardsView.render().el);
+	},
+
+	onCardFlipping: function() {
+		if (this.collection.flipped().length == 2) {
+			setTimeout(this._handleResults, 500, this.collection);		
+		}
+	},
+
+	_handleResults: function(cards) {
+		if (cards.areFilppedCardsSameColor()) {
+			cards.removeFlippedCards();
+			if (cards.length == 0) console.log('you win');
+		} else {
+			cards.turnDownFlippedCards();
+		}		
+	},
+
+	_onClickButton: function() {
+		this.render();
 	}
+
 
 });

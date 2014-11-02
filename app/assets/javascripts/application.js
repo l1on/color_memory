@@ -17,6 +17,7 @@
 //= require backbone
 //= require backbone.marionette
 
+//= require assets
 //= require_self
 //= require_tree ./models
 //= require_tree ./templates

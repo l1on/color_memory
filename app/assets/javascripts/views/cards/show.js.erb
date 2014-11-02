@@ -2,8 +2,32 @@ ColorMemory.Views.Cards.Show = Backbone.Marionette.ItemView.extend({
 	tagName: 'img',
 	
 	attributes: {
-		src: "<%= asset_path('card_bg.gif') %>"
+		src: ASSETS['card_bg'],
 	},
 
-	template: _.template(''),
+	template: false,
+
+	modelEvents: {
+		'change:selected': 'toggleBorderDisplay',
+		'change:faceDown': 'toggleFace'
+	},
+
+	toggleBorderDisplay: function() {
+		if (this.model.get('selected') === true) {
+			this.$el.addClass('border');
+		} else {
+			this.$el.removeClass('border');
+		}
+	},
+
+	toggleFace: function() {	
+		if (this.model.get('faceDown') === true) {
+			this.$el.attr('src', ASSETS['card_bg']);		
+		} else {
+			this.$el.attr('src', ASSETS[this.model.get('color')]);	
+		}	
+	}
+
+
+
 });

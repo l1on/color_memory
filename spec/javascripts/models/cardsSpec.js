@@ -72,4 +72,72 @@ describe("Cards", function() {
             expect(cards.contains(card1) && cards.contains(card2)).toBe(true);
         });
     });
+
+    describe('give two cards', function() {
+        beforeEach(function() {
+            cards.add([new ColorMemory.Models.Card, new ColorMemory.Models.Card]);
+        });
+
+        describe('#selectNextCard', function() {
+            describe('when the current selected card is not the last one', function() {
+                beforeEach(function() {
+                    cards.at(0).select();
+                });
+
+                it('makes the next card the only one selected', function() {
+                    cards.selectNextCard(); 
+
+                    var selectedCards = cards.filter(function(card) { return card.get('selected') === true; });          
+                    expect(selectedCards.length).toEqual(1);
+                    expect(_(selectedCards).first()).toEqual(cards.at(1));         
+                });
+            });
+
+            describe('when the current selected card is the last one', function() {
+                beforeEach(function() {
+                    cards.at(1).select();
+                });
+
+                it('makes the current card the only one selected', function() {
+                    cards.selectNextCard(); 
+
+                    var selectedCards = cards.filter(function(card) { return card.get('selected') === true; });          
+                    expect(selectedCards.length).toEqual(1);
+                    expect(_(selectedCards).first()).toEqual(cards.at(1));          
+                });
+            });  
+        }); 
+
+        describe('#selectPreviousCard', function() {
+            describe('when the current selected card is not the first one', function() {
+                beforeEach(function() {
+                    cards.at(1).select();
+                });
+
+                it('makes the previous card the only one selected', function() {
+                    cards.selectPreviousCard(); 
+
+                    var selectedCards = cards.filter(function(card) { return card.get('selected') === true; });          
+                    expect(selectedCards.length).toEqual(1);
+                    expect(_(selectedCards).first()).toEqual(cards.at(0));         
+                });
+            });
+
+            describe('when the current selected card is the first one', function() {
+                beforeEach(function() {
+                    cards.at(0).select();
+                });
+
+                it('makes the current card the only one selected', function() {
+                    cards.selectPreviousCard(); 
+
+                    var selectedCards = cards.filter(function(card) { return card.get('selected') === true; });          
+                    expect(selectedCards.length).toEqual(1);
+                    expect(_(selectedCards).first()).toEqual(cards.at(0));          
+                });
+            });
+           
+        });         
+    });
+
 });

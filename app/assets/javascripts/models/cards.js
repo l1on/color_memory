@@ -1,6 +1,10 @@
 ColorMemory.Models.Cards = Backbone.Collection.extend({
     model: ColorMemory.Models.Card,
 
+    initialize: function() {
+        this.on('remove', this.selectFirstCard);
+    },
+
     containsCardWithColor: function(color) {
     	if (this.find(function(card) { return card.get('color') == color; })) {
     		return true;
@@ -9,15 +13,44 @@ ColorMemory.Models.Cards = Backbone.Collection.extend({
     },
 
     areFilppedCardsSameColor: function() {
-    	var self = this;
-    	return self.where({faceDown: false}).every(function(card) { return card.get('color') == self.at(0).get('color'); }); 
+    	var flippedCards = this.flipped();
+    	return flippedCards.every(function(card) { return card.get('color') == _(flippedCards).first().get('color'); }); 
+    },
+
+    flipped: function() {
+        return this.where({faceDown: false});
     },
 
     removeFlippedCards: function() {
-        this.reset(this.reject(function(card) { return card.isFlipped(); }));
+        this.remove(this.flipped());
     },
 
     turnDownFlippedCards: function() {
         _(this.where({faceDown: false})).each(function(card) { card.turnDown(); });
-    }
+    },  
+
+    selectNextCard: function() {
+        this._selectCard({step: 1, edge: this.length - 1});
+    },
+
+    selectPreviousCard: function() {
+        this._selectCard({step: -1, edge: 0});
+    },
+
+    getSelectedCard: function() {
+        return this.find(function(card) { return card.get('selected') === true; });
+    },
+
+    selectFirstCard: function() {
+        if (this.length > 0) this.first().select();
+    },
+
+    _selectCard: function(direction) {
+        var indexOfSelectedCard = this.indexOf(this.getSelectedCard());
+        if (indexOfSelectedCard == direction.edge) return;
+        
+        this.at(indexOfSelectedCard).deselect();
+        this.at(indexOfSelectedCard + direction.step).select();        
+    },
+
 });

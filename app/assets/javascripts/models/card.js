@@ -12,10 +12,6 @@ ColorMemory.Models.Card = Backbone.Model.extend({
 		this.set('faceDown', true);
 	},
 
-	isFlipped: function() {
-		return !this.get('faceDown');
-	},
-
 	select: function() {
 		this.set('selected', true);
 	},
