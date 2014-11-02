@@ -22,19 +22,16 @@
 //= require_tree ./models
 //= require_tree ./templates
 //= require_tree ./views
+//= require_tree ./routers
 
 var ColorMemory = new Marionette.Application();
 
-ColorMemory.addRegions({
-	gameRegion: 'body'
-});
-
-ColorMemory.on("start", function(options){
-	var newGameView = new ColorMemory.Views.Games.New({
-		model: new ColorMemory.Models.Game
-	});
-	ColorMemory.gameRegion.show(newGameView);
-});
-
 ColorMemory.Models = {};
 ColorMemory.Views = {};
+ColorMemory.Routers = {};
+
+ColorMemory.on("start", function(options){
+	window.router = new ColorMemory.Routers.GamesRouter({games: <%= @games.to_json.html_safe %>});
+	Backbone.history.start();
+});
+

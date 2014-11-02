@@ -1,5 +1,5 @@
 ColorMemory.Views.Games.New = Marionette.ItemView.extend({
-	id: 'game',
+	id: 'new_game',
 
 	template: JST['templates/games/new'],
 
@@ -7,12 +7,12 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 		'click button': '_onClickButton'
 	},
 
-	model: this.model,
-
 	onBeforeRender: function() {
-		this.collection = this.model.get('cards');
+		this.model = new this.collection.model();
+		
+		this.cards = this.model.get('cards');
 
-		this.listenTo(this.collection, 'change:faceDown', this._onCardFlipping);
+		this.listenTo(this.cards, 'change:faceDown', this._onCardFlipping);
 		this.listenTo(this.model, 'change:score', this._onScoreChange);
 	},
 
@@ -20,15 +20,15 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 		if (this.cardsView) this.cardsView.destroy();
 		
 		this.cardsView = new ColorMemory.Views.Cards.List({
-			collection: this.collection
+			collection: this.cards
 		}); 
 
 		this.$('#cards').html(this.cardsView.render().el);
 	},
 
 	_onCardFlipping: function() {
-		if (this.collection.flipped().length == 2) {
-			setTimeout(this._handleResults, 500, this.collection, this.model);		
+		if (this.cards.flipped().length == 2) {
+			setTimeout(this._handleResults, 500, this.cards, this.model);		
 		}
 	},
 
@@ -45,7 +45,6 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	},
 
 	_onClickButton: function() {
-		this.model = new ColorMemory.Models.Game();
 		this.render();
 	},
 
