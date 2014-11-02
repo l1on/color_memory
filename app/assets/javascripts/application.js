@@ -30,7 +30,9 @@ ColorMemory.addRegions({
 });
 
 ColorMemory.on("start", function(options){
-	var newGameView = new ColorMemory.Views.Games.New();
+	var newGameView = new ColorMemory.Views.Games.New({
+		model: new ColorMemory.Models.Game
+	});
 	ColorMemory.gameRegion.show(newGameView);
 });
 

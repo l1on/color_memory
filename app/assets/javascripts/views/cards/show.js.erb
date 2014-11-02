@@ -8,11 +8,11 @@ ColorMemory.Views.Cards.Show = Backbone.Marionette.ItemView.extend({
 	template: false,
 
 	modelEvents: {
-		'change:selected': 'toggleBorderDisplay',
-		'change:faceDown': 'toggleFace'
+		'change:selected': '_toggleBorderDisplay',
+		'change:faceDown': '_toggleFace'
 	},
 
-	toggleBorderDisplay: function() {
+	_toggleBorderDisplay: function() {
 		if (this.model.get('selected') === true) {
 			this.$el.addClass('border');
 		} else {
@@ -20,7 +20,7 @@ ColorMemory.Views.Cards.Show = Backbone.Marionette.ItemView.extend({
 		}
 	},
 
-	toggleFace: function() {	
+	_toggleFace: function() {	
 		if (this.model.get('faceDown') === true) {
 			this.$el.attr('src', ASSETS['card_bg']);		
 		} else {

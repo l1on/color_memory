@@ -2,10 +2,10 @@ ColorMemory.Views.Cards.List = Backbone.Marionette.CollectionView.extend({
 	childView: ColorMemory.Views.Cards.Show,
 
 	onRender: function() {
-		this.setupKeyboardControl();
+		this._setupKeyboardControl();
 	},
 
-	setupKeyboardControl: function() {
+	_setupKeyboardControl: function() {
 		$(document).keydown(_(function(event){ 
 			switch(event.which) {
 				case 37: 
