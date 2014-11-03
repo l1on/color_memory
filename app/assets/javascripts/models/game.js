@@ -1,6 +1,8 @@
 ColorMemory.Models.Game = Backbone.Model.extend({
 	defaults: {
-		"score": 0,
+		'score': 0,
+		'name': null,
+		'email': null
 	},
 	
 	initialize: function() {

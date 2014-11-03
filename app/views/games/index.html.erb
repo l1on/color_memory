@@ -2,6 +2,7 @@
 
 <script type="text/javascript">
     $(function() {
-        ColorMemory.start();
+    	window.router = new ColorMemory.Routers.GamesRouter({games: <%= @games.to_json.html_safe %>});
+        Backbone.history.start();
     });
 </script>

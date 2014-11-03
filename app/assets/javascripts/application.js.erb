@@ -30,8 +30,3 @@ ColorMemory.Models = {};
 ColorMemory.Views = {};
 ColorMemory.Routers = {};
 
-ColorMemory.on("start", function(options){
-	window.router = new ColorMemory.Routers.GamesRouter({games: <%= @games.to_json.html_safe %>});
-	Backbone.history.start();
-});
-

@@ -4,7 +4,8 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	template: JST['templates/games/new'],
 
 	events: {
-		'click button': '_onClickButton'
+		'click button': '_onClickButton',
+		'submit form': '_onSubmit'
 	},
 
 	onBeforeRender: function() {
@@ -37,7 +38,7 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 			game.set('score', game.get('score') + 1);
 			cards.removeFlippedCards();
 			
-			if (cards.length == 0) console.log('you win');
+			if (cards.length == 0) this.$('form').removeClass('hide');
 		} else {
 			game.set('score', game.get('score') - 1);
 			cards.turnDownFlippedCards();
@@ -49,8 +50,25 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	},
 
 	_onScoreChange: function() {
-		this.$('#score').text(this.model.get('score'));
-	}
+		this.$('#score span').text(this.model.get('score'));
+	},
 
+	_onSubmit: function(e) {
+		e.preventDefault();
+    	e.stopPropagation();
+
+    	this.model.set({
+    		name: this.$('#player_name').val(),
+    		email: this.$('#player_email').val()
+    	});
+
+    	var self = this;
+    	self.collection.create(self.model.toJSON(),{
+    		success: function(){
+    			self.cardsView.destroy();
+    			window.location.hash = "index";
+    		}
+    	});
+	},
 
 });

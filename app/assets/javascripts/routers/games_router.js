@@ -6,15 +6,23 @@ ColorMemory.Routers.GamesRouter = Backbone.Router.extend({
 
 	routes: {
 		'new': 'newGame',
-		'index': 'index'
+		'index': 'index',
+		'.*': 'index'
 	},
 
 	newGame: function() {
 		this.view = new ColorMemory.Views.Games.New({
 			collection: this.games,
-			//model: new this.games.model()
 		});
 
 		$("#games").html(this.view.render().el);
+	},
+
+	index: function() {
+		this.view = new ColorMemory.Views.Games.List({
+			collection: this.games
+		});
+
+		$("#games").html(this.view.render().el);		
 	}
 });

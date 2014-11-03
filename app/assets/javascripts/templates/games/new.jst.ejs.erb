@@ -1,6 +1,25 @@
 <div id='logo'>
 	<%= image_tag('logo.png') %>
 </div>
-<div id='score'><%%= score %></div>
+<div id='score'>
+	<label>Current score:</label>
+	<span><%%= score %></span>
+</div>
 <div id='cards'></div>
 <button>Restart</button>
+
+<form class="hide">
+  	<div class="field">
+    	<label for="player_name">Your name:</label>
+    	<input type="text" name="player_name" id="player_name" value="<%%= name %>" >
+  	</div>
+
+  	<div class="field">
+    	<label for="player_email">Your email:</label>
+    	<input type="text" name="player_email" id="player_email" value="<%%= email %>" >
+  	</div>
+
+  	<div class="actions">
+    	<input type="submit" value="Submit your score" />
+  	</div>
+</form>
