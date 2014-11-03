@@ -1,10 +1,16 @@
 ColorMemory.Models.Game = Backbone.Model.extend({
 	defaults: {
 		'score': 0,
-		'name': null,
-		'email': null
+		'name': '',
+		'email': ''
 	},
 	
+	validate: function(attrs) {
+	    if (attrs.name == '' || attrs.email == '') {
+	      return 'name or email cannot be empty';
+	    }
+  	},
+
 	initialize: function() {
 		this.set('cards', new ColorMemory.Models.Cards());
 

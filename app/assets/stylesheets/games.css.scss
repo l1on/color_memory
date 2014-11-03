@@ -3,7 +3,29 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .border {
-	border: black thin solid;
+	outline: 2px solid rgb(75,75,75);
+	outline-offset: -1px;
+}
+
+#cards {
+	width: 330px;
+
+	img {
+		margin: 1px;
+	}
+}
+
+.container {
+	width: 720px;
+}
+
+#score {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#new_game {
+	margin-top: 50px;
 }
 
 

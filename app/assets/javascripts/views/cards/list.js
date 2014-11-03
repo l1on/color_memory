@@ -1,4 +1,6 @@
 ColorMemory.Views.Cards.List = Backbone.Marionette.CollectionView.extend({
+	id: 'cards',
+	
 	childView: ColorMemory.Views.Cards.Show,
 
 	onRender: function() {
@@ -12,13 +14,13 @@ ColorMemory.Views.Cards.List = Backbone.Marionette.CollectionView.extend({
 					this.collection.selectPreviousCard();
 					break;
 				case 38: 
-					alert('up');
+					this.collection.selectPreviousRowCard();
 					break;
 				case 39: 
 					this.collection.selectNextCard();
 					break;				
 				case 40: 
-					alert('down');
+					this.collection.selectNextRowCard();
 					break;
 				case 13:
 					this.collection.getSelectedCard().flip();

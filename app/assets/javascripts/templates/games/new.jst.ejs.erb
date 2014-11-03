@@ -1,25 +1,26 @@
-<div id='logo'>
-	<%= image_tag('logo.png') %>
+<div id='gameboard' class='col-lg-6'>
+    <form class="hide">
+        <div class="form-group">
+            <label for="player_name">Your name:</label>
+            <input type="text" class="form-control" id="player_name" value="<%%= name %>" placeholder ='required'>
+        </div>
+
+        <div class="form-group">
+            <label for="player_email">Your email:</label>
+            <input type="text" class="form-control" id="player_email" value="<%%= email %>" placeholder ='required'>
+        </div>
+        
+        <input type="submit" class="btn btn-primary" value="Submit your score" />
+    </form>
 </div>
-<div id='score'>
-	<label>Current score:</label>
-	<span><%%= score %></span>
+
+<div class='col-lg-6'>
+    <%= image_tag('logo.png', :id => 'logo') %>
+
+	<div id ='score'>
+        <h5>Current score:</h5>
+    	<h2><%%= score %></h2>
+    </div>
+  
+    <button type="button" class="btn btn-default btn-lg" id='restart'>Restart</button>
 </div>
-<div id='cards'></div>
-<button>Restart</button>
-
-<form class="hide">
-  	<div class="field">
-    	<label for="player_name">Your name:</label>
-    	<input type="text" name="player_name" id="player_name" value="<%%= name %>" >
-  	</div>
-
-  	<div class="field">
-    	<label for="player_email">Your email:</label>
-    	<input type="text" name="player_email" id="player_email" value="<%%= email %>" >
-  	</div>
-
-  	<div class="actions">
-    	<input type="submit" value="Submit your score" />
-  	</div>
-</form>

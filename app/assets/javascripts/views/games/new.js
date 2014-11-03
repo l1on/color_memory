@@ -1,6 +1,8 @@
 ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	id: 'new_game',
 
+	className: 'row',
+
 	template: JST['templates/games/new'],
 
 	events: {
@@ -24,7 +26,7 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 			collection: this.cards
 		}); 
 
-		this.$('#cards').html(this.cardsView.render().el);
+		this.$('#gameboard').prepend(this.cardsView.render().el);
 	},
 
 	_onCardFlipping: function() {
@@ -50,7 +52,7 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	},
 
 	_onScoreChange: function() {
-		this.$('#score span').text(this.model.get('score'));
+		this.$('#score h2').text(this.model.get('score'));
 	},
 
 	_onSubmit: function(e) {

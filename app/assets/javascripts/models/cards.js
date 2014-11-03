@@ -37,6 +37,20 @@ ColorMemory.Models.Cards = Backbone.Collection.extend({
         this._selectCard({step: -1, edge: 0});
     },
 
+    selectNextRowCard: function() {
+        var self = this;
+        _(4).times(function() {
+            self.selectNextCard();
+        });
+    },
+
+    selectPreviousRowCard: function() {
+        var self = this;
+        _(4).times(function() {
+            self.selectPreviousCard();
+        });
+    },
+
     getSelectedCard: function() {
         return this.find(function(card) { return card.get('selected') === true; });
     },
