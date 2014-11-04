@@ -69,7 +69,9 @@ ColorMemory.Views.Games.New = Marionette.ItemView.extend({
     		success: function(){
     			self.cardsView.destroy();
     			window.location.hash = "index";
-    		}
+    		},
+
+    		wait: true
     	});
 	},
 
