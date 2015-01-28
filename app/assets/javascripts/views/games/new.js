@@ -1,8 +1,6 @@
 ColorMemory.Views.Games.New = Marionette.ItemView.extend({
 	id: 'new_game',
 
-	className: 'row',
-
 	template: JST['templates/games/new'],
 
 	events: {
